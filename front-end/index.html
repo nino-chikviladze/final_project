@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Agency</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">🏨 Saxeli</a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Rooms</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section id="rooms-section">
+            <h2>Available Rooms</h2>
+            <p>Choose your preferred room to book:</p>
+
+            <div class="room-cards-container">
+                <div class="room-card">
+                    <div class="room-info">
+                        <h3>Standard Room</h3>
+                        <p>Type: Single</p>
+                        <p>Price: <strong>80 Lari</strong> / night</p>
+                    </div>
+                    <div>
+                        <span class="status-badge status-available">Available</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-info">
+                        <h3>Double Deluxe</h3>
+                        <p>Type: Double (Family)</p>
+                        <p>Price: <strong>150 Lari</strong> / night</p>
+                    </div>
+                    <div>
+                        <span class="status-badge status-available">Available</span>
+                    </div>
+                </div>
+              
+                <div class="room-card" style="opacity: 0.6;">
+                    <div class="room-info">
+                        <h3>Presidential Suite</h3>
+                        <p>Type: VIP</p>
+                        <p>Price: <strong>350 Lari</strong> / night</p>
+                    </div>
+                    <div>
+                        <span class="status-badge status-booked">Booked</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking-section">
+            <h2>Booking</h2>
+            <form id="booking-form" class="booking-form">
+
+                <label for="selected-room">Select a Room:</label>
+                <select id="selected-room" required>
+                    <option value="">-- Choose a room --</option>
+                    <option value="standard">Standard Room (80 Lari)</option>
+                    <option value="deluxe">Double Deluxe (150 Lari)</option>
+                </select>
+
+                <label for="days">Number of Nights:</label>
+                <input type="number" id="days" min="1" value="1" required>
+
+                <button type="submit" id="submit-btn">Book Now</button>
+            </form>
+
+            <div id="booking-status" class="status-success">
+                <p>Booking Status: Pending</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Saxeli Hotel Booking Agency. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
