@@ -4,7 +4,6 @@ from hotel_booking import Room, Customer, Hotel
 class TestHotelBookingSystem(unittest.TestCase):
 
     def setUp(self):
-        # Setting up test environment before each test
         self.hotel = Hotel("Sheraton")
         self.room1 = Room(101, "Single", 100.0, 1)
         self.room2 = Room(102, "Double", 180.0, 2)
@@ -23,7 +22,6 @@ class TestHotelBookingSystem(unittest.TestCase):
         
         self.assertTrue(success)
         self.assertEqual(self.customer_rich.budget, initial_budget - payment_amount)
-        # Paying $150 should reward the customer with 15 points
         self.assertEqual(self.customer_rich.reward_points, 15)
 
     def test_pay_for_booking_insufficient_funds(self):
@@ -34,26 +32,22 @@ class TestHotelBookingSystem(unittest.TestCase):
         success = self.customer_poor.pay_for_booking(payment_amount)
         
         self.assertFalse(success)
-        self.assertEqual(self.customer_poor.budget, initial_budget)  # Budget remains unchanged
+        self.assertEqual(self.customer_poor.budget, initial_budget)
 
     def test_book_room_for_customer_success(self):
         """Tests a successful booking of an available room"""
-        # Initial status of the room
         self.assertTrue(self.room1.is_available)
         
-        # Booking for 1 night (Price: $100)
         success = self.hotel.book_room_for_customer(self.customer_rich, 101, 1)
         
         self.assertTrue(success)
-        self.assertFalse(self.room1.is_available)  # Room status must change to occupied
-        self.assertIn(self.room1, self.customer_rich.booked_rooms)  # Room must be added to booked list
+        self.assertFalse(self.room1.is_available)
+        self.assertIn(self.room1, self.customer_rich.booked_rooms)
 
     def test_book_already_booked_room(self):
         """Tests that booking an already occupied room is not allowed"""
-        # First customer books the room
         self.hotel.book_room_for_customer(self.customer_rich, 101, 1)
         
-        # Second customer attempts to book the exact same room
         another_customer = Customer("David", 1000.0)
         success = self.hotel.book_room_for_customer(another_customer, 101, 1)
         
@@ -65,7 +59,6 @@ class TestHotelBookingSystem(unittest.TestCase):
         self.hotel.book_room_for_customer(self.customer_rich, 101, 1)
         self.assertFalse(self.room1.is_available)
         
-        # Cancellation
         cancel_success = self.hotel.cancel_booking(self.customer_rich, 101)
         
         self.assertTrue(cancel_success)
